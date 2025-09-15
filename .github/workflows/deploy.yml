@@ -30,7 +30,7 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: "pedro-vs"
+          username: "pedrovargass"
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           
       - name: Set up Docker Buildx
@@ -42,7 +42,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: pedro-vs/prova-intermediaria-ci:${{ github.sha }}
+          tags: pedrovargass/prova-intermediaria-ci:${{ github.sha }}
 
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
@@ -54,4 +54,4 @@ jobs:
           script: |
             docker stop prova-intermediaria
             docker rm --force prova-intermediaria
-            docker run -d -p 8080:8080 --name prova-intermediaria --network=rede pedro-vs/prova-intermediaria-ci:${{ github.sha }}
+            docker run -d -p 8080:8080 --name prova-intermediaria --network=rede pedrovargass/prova-intermediaria-ci:${{ github.sha }}
