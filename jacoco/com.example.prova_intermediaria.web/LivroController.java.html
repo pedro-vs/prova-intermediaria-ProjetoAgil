@@ -23,36 +23,36 @@ public class LivroController {
     private final LivroService service;
 
 
-<span class="nc" id="L26">    public LivroController(LivroService service) {</span>
-<span class="nc" id="L27">        this.service = service;</span>
-<span class="nc" id="L28">    }</span>
+<span class="fc" id="L26">    public LivroController(LivroService service) {</span>
+<span class="fc" id="L27">        this.service = service;</span>
+<span class="fc" id="L28">    }</span>
 
 
     // POST /api/livros -&gt; cadastra
     @PostMapping
     public ResponseEntity&lt;Livro&gt; criar(@Valid @RequestBody LivroRequest request) {
-<span class="nc" id="L34">        Livro livro = new Livro();</span>
-<span class="nc" id="L35">        livro.setTitulo(request.titulo);</span>
-<span class="nc" id="L36">        livro.setAutor(request.autor);</span>
-<span class="nc" id="L37">        livro.setGenero(request.genero);</span>
-<span class="nc" id="L38">        livro.setAnoPublicacao(request.anoPublicacao);</span>
-<span class="nc" id="L39">        Livro salvo = service.criar(livro);</span>
-<span class="nc" id="L40">        return ResponseEntity.status(HttpStatus.CREATED).body(salvo);</span>
+<span class="fc" id="L34">        Livro livro = new Livro();</span>
+<span class="fc" id="L35">        livro.setTitulo(request.titulo);</span>
+<span class="fc" id="L36">        livro.setAutor(request.autor);</span>
+<span class="fc" id="L37">        livro.setGenero(request.genero);</span>
+<span class="fc" id="L38">        livro.setAnoPublicacao(request.anoPublicacao);</span>
+<span class="fc" id="L39">        Livro salvo = service.criar(livro);</span>
+<span class="fc" id="L40">        return ResponseEntity.status(HttpStatus.CREATED).body(salvo);</span>
     }
 
 
     // GET /api/livros -&gt; lista todos
     @GetMapping
     public List&lt;Livro&gt; listarTodos() {
-<span class="nc" id="L47">        return service.listarTodos();</span>
+<span class="fc" id="L47">        return service.listarTodos();</span>
     }
 
 
     // DELETE /api/livros/{id} -&gt; excluir
     @DeleteMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;Void&gt; excluir(@PathVariable Long id) {
-<span class="nc" id="L54">        service.excluir(id);</span>
-<span class="nc" id="L55">        return ResponseEntity.noContent().build();</span>
+<span class="fc" id="L54">        service.excluir(id);</span>
+<span class="fc" id="L55">        return ResponseEntity.noContent().build();</span>
     }
 
 
@@ -67,8 +67,8 @@ public class LivroController {
     // Tratamento para not found
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity&lt;ErroResponse&gt; handleRuntime(RuntimeException ex) {
-<span class="nc bnc" id="L70" title="All 4 branches missed.">        if (ex.getMessage() != null &amp;&amp; ex.getMessage().startsWith(&quot;Livro não encontrado&quot;)) {</span>
-<span class="nc" id="L71">            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErroResponse(ex.getMessage()));</span>
+<span class="pc bpc" id="L70" title="2 of 4 branches missed.">        if (ex.getMessage() != null &amp;&amp; ex.getMessage().startsWith(&quot;Livro não encontrado&quot;)) {</span>
+<span class="fc" id="L71">            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErroResponse(ex.getMessage()));</span>
         }
 <span class="nc" id="L73">        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErroResponse(&quot;Erro interno&quot;));</span>
     }
