@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+prova-intermediaria,com.example.prova_intermediaria.web.dto,ErroResponse,6,0,0,0,1,0,1,0,1,0
+prova-intermediaria,com.example.prova_intermediaria.web.dto,LivroRequest,3,0,0,0,1,0,1,0,1,0
+prova-intermediaria,com.example.prova_intermediaria.web,LivroController,87,0,4,0,18,0,8,0,6,0
+prova-intermediaria,com.example.prova_intermediaria.service,LivroService,0,32,0,2,0,9,0,5,0,4
+prova-intermediaria,com.example.prova_intermediaria,ProvaIntermediariaApplication,5,3,0,0,2,1,1,1,1,1
+prova-intermediaria,com.example.prova_intermediaria.model,Livro,20,32,1,1,6,10,7,8,6,8

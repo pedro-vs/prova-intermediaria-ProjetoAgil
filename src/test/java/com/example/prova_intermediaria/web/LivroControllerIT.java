@@ -104,4 +104,29 @@ class LivroControllerIT {
                         .content(om.writeValueAsString(body)))
                 .andExpect(status().isBadRequest());
     }
+
+    @Test
+    @DisplayName("GET /api/livros retorna array (pode estar vazio)")
+    void listarVazioOuNao() throws Exception {
+        mvc.perform(get("/api/livros"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isArray());
+    }
+
+    @Test
+    @DisplayName("POST /api/livros 400 quando título em branco")
+    void postComTituloVazioDa400() throws Exception {
+        var body = new java.util.HashMap<String,Object>();
+        body.put("titulo", "");              // inválido
+        body.put("autor", "Alguém");
+        body.put("genero", "Técnico");
+        body.put("anoPublicacao", 2020);
+
+        mvc.perform(post("/api/livros")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(body)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message").exists());
+    }
+
 }

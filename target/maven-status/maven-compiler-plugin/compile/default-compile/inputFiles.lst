@@ -1,0 +1,7 @@
+/Users/robertosepulvedajr/Downloads/prova-intermediaria-ProjetoAgil1/src/main/java/com/example/prova_intermediaria/ProvaIntermediariaApplication.java
+/Users/robertosepulvedajr/Downloads/prova-intermediaria-ProjetoAgil1/src/main/java/com/example/prova_intermediaria/model/Livro.java
+/Users/robertosepulvedajr/Downloads/prova-intermediaria-ProjetoAgil1/src/main/java/com/example/prova_intermediaria/repository/LivroRepository.java
+/Users/robertosepulvedajr/Downloads/prova-intermediaria-ProjetoAgil1/src/main/java/com/example/prova_intermediaria/service/LivroService.java
+/Users/robertosepulvedajr/Downloads/prova-intermediaria-ProjetoAgil1/src/main/java/com/example/prova_intermediaria/web/LivroController.java
+/Users/robertosepulvedajr/Downloads/prova-intermediaria-ProjetoAgil1/src/main/java/com/example/prova_intermediaria/web/dto/ErroResponse.java
+/Users/robertosepulvedajr/Downloads/prova-intermediaria-ProjetoAgil1/src/main/java/com/example/prova_intermediaria/web/dto/LivroRequest.java

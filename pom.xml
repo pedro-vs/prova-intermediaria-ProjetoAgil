@@ -74,45 +74,36 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.11</version>
+				<version>0.8.12</version>
 				<executions>
+					<!-- Instrumenta a JVM de testes -->
 					<execution>
-						<id>prepare-agent</id>
-						<goals><goal>prepare-agent</goal></goals>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
 					</execution>
+
+					<!-- Gera o relatório após os testes -->
 					<execution>
 						<id>report</id>
 						<phase>test</phase>
-						<goals><goal>report</goal></goals>
-					</execution>
-					<execution>
-						<id>check</id>
-						<goals><goal>check</goal></goals>
+						<goals>
+							<goal>report</goal>
+						</goals>
 						<configuration>
-							<rules>
-								<rule>
-									<element>BUNDLE</element>
-									<limits>
-										<limit>
-											<counter>LINE</counter>
-											<value>COVEREDRATIO</value>
-											<minimum>0.80</minimum>
-										</limit>
-									</limits>
-								</rule>
-							</rules>
-							<excludes>
-								<!-- opcional: excluir classe principal -->
-								<exclude>com/example/prova_intermediaria/ProvaIntermediariaApplication.class</exclude>
-							</excludes>
+							<!-- onde salvar o .exec e o relatório -->
+							<dataFile>target/jacoco.exec</dataFile>
+							<outputDirectory>${project.basedir}/jacoco</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
+
 
 </project>

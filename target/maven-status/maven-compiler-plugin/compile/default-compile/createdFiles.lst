@@ -1,0 +1,7 @@
+com/example/prova_intermediaria/web/dto/ErroResponse.class
+com/example/prova_intermediaria/web/dto/LivroRequest.class
+com/example/prova_intermediaria/model/Livro.class
+com/example/prova_intermediaria/repository/LivroRepository.class
+com/example/prova_intermediaria/service/LivroService.class
+com/example/prova_intermediaria/ProvaIntermediariaApplication.class
+com/example/prova_intermediaria/web/LivroController.class

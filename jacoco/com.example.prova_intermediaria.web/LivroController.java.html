@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LivroController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prova-intermediaria</a> &gt; <a href="index.source.html" class="el_package">com.example.prova_intermediaria.web</a> &gt; <span class="el_source">LivroController.java</span></div><h1>LivroController.java</h1><pre class="source lang-java linenums">package com.example.prova_intermediaria.web;
+
+
+import com.example.prova_intermediaria.model.Livro;
+import com.example.prova_intermediaria.service.LivroService;
+import com.example.prova_intermediaria.web.dto.ErroResponse;
+import com.example.prova_intermediaria.web.dto.LivroRequest;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
+
+
+import java.util.List;
+
+
+@RestController
+@RequestMapping(&quot;/api/livros&quot;)
+public class LivroController {
+
+
+    private final LivroService service;
+
+
+<span class="nc" id="L26">    public LivroController(LivroService service) {</span>
+<span class="nc" id="L27">        this.service = service;</span>
+<span class="nc" id="L28">    }</span>
+
+
+    // POST /api/livros -&gt; cadastra
+    @PostMapping
+    public ResponseEntity&lt;Livro&gt; criar(@Valid @RequestBody LivroRequest request) {
+<span class="nc" id="L34">        Livro livro = new Livro();</span>
+<span class="nc" id="L35">        livro.setTitulo(request.titulo);</span>
+<span class="nc" id="L36">        livro.setAutor(request.autor);</span>
+<span class="nc" id="L37">        livro.setGenero(request.genero);</span>
+<span class="nc" id="L38">        livro.setAnoPublicacao(request.anoPublicacao);</span>
+<span class="nc" id="L39">        Livro salvo = service.criar(livro);</span>
+<span class="nc" id="L40">        return ResponseEntity.status(HttpStatus.CREATED).body(salvo);</span>
+    }
+
+
+    // GET /api/livros -&gt; lista todos
+    @GetMapping
+    public List&lt;Livro&gt; listarTodos() {
+<span class="nc" id="L47">        return service.listarTodos();</span>
+    }
+
+
+    // DELETE /api/livros/{id} -&gt; excluir
+    @DeleteMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;Void&gt; excluir(@PathVariable Long id) {
+<span class="nc" id="L54">        service.excluir(id);</span>
+<span class="nc" id="L55">        return ResponseEntity.noContent().build();</span>
+    }
+
+
+    // Tratamento simples de erros de validação
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity&lt;ErroResponse&gt; handleValidation(MethodArgumentNotValidException ex) {
+<span class="nc" id="L62">        String msg = ex.getBindingResult().getAllErrors().get(0).getDefaultMessage();</span>
+<span class="nc" id="L63">        return ResponseEntity.badRequest().body(new ErroResponse(msg));</span>
+    }
+
+
+    // Tratamento para not found
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity&lt;ErroResponse&gt; handleRuntime(RuntimeException ex) {
+<span class="nc bnc" id="L70" title="All 4 branches missed.">        if (ex.getMessage() != null &amp;&amp; ex.getMessage().startsWith(&quot;Livro não encontrado&quot;)) {</span>
+<span class="nc" id="L71">            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErroResponse(ex.getMessage()));</span>
+        }
+<span class="nc" id="L73">        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErroResponse(&quot;Erro interno&quot;));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
